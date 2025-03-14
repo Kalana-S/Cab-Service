@@ -19,7 +19,6 @@ com\mycompany\simple\maven\controller\BookingController.class
 com\mycompany\simple\maven\controller\StaffLoginController.class
 com\mycompany\simple\maven\service\CustomerService.class
 com\mycompany\simple\maven\dao\OrderDAO.class
-com\mycompany\simple\maven\model\Order.class
 com\mycompany\simple\maven\service\LocationService.class
 com\mycompany\simple\maven\controller\DeleteCustomerController.class
 com\mycompany\simple\maven\service\BookingService.class

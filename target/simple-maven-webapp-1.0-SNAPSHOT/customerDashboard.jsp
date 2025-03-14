@@ -7,47 +7,49 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .success-message {
-            background-color: lightgreen;
-            color: green;
-            padding: 10px;
-            border: 1px solid green;
-            margin-bottom: 10px;
-            width: 50%;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="Resources/dashboardStyles.css">
 </head>
 <body>
 
-    <h2>Welcome, <%= (customer != null) ? customer.getName() : "Guest" %></h2>
+    <div class="dashboard-container">
 
-    <% if (customer == null) { %>
-        <p style="color: red;">Session expired or not set. Please log in again.</p>
-        <a href="customerLogin.jsp">Login</a>
-    <% } else { %>
+        <div class="welcome-section">
+            <h2>Welcome, <%= (customer != null) ? customer.getName() : "Guest" %> 👋</h2>
+        </div>
 
-        <%-- Show Booking Success Message --%>
-        <% if (bookingMessage != null) { %>
-            <div class="success-message">
-                <strong><%= bookingMessage %></strong>
+        <% if (customer == null) { %>
+            <div class="error-message">
+                <p>Session expired or not set. Please log in again.</p>
+                <a href="customerLogin.jsp" class="btn">Login</a>
             </div>
-            <% session.removeAttribute("bookingSuccessMessage"); %>
+        <% } else { %>
+
+            <%-- Booking Success Message with Auto-Fade Effect --%>
+            <% if (bookingMessage != null) { %>
+                <div class="success-message">
+                    <strong><%= bookingMessage %></strong>
+                </div>
+                <% session.removeAttribute("bookingSuccessMessage"); %>
+            <% } %>
+
+            <div class="customer-info">
+                <p><strong>Email:</strong> <%= customer.getEmail() %></p>
+                <p><strong>NIC:</strong> <%= customer.getNic() %></p>
+                <p><strong>Mobile:</strong> <%= customer.getMobileNo() %></p>
+            </div>
+
+            <div class="action-buttons">
+                <a href="addBooking.jsp" class="btn primary">➕ Add A New Booking</a>
+                <a href="customerLogout.jsp" class="btn danger">🚪 Logout</a>
+            </div>
+
         <% } %>
-
-        <p>Your email: <%= customer.getEmail() %></p>
-        <p>Your NIC: <%= customer.getNic() %></p>
-        <p>Your Mobile: <%= customer.getMobileNo() %></p>
-        <a href="customerLogout.jsp">Logout</a><br><br>
-
-        <a href="addBooking.jsp">Add A New Booking</a>
-    <% } %>
+    </div>
 
 </body>
 </html>

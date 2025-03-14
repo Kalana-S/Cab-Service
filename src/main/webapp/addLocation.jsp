@@ -1,23 +1,41 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Location</title>
+    <link rel="stylesheet" type="text/css" href="Resources/book.css">
+    <script>
+        window.onload = function() {
+            <% if (request.getAttribute("message") != null) { %>
+                alert("<%= request.getAttribute("message") %>");
+            <% } else if (request.getAttribute("error") != null) { %>
+                alert("<%= request.getAttribute("error") %>");
+            <% } %>
+        };
+    </script>
 </head>
 <body>
-    <h2>Add a New Location</h2>
-    <% if (request.getAttribute("message") != null) { %>
-        <p style="color: green;"><%= request.getAttribute("message") %></p>
-    <% } else if (request.getAttribute("error") != null) { %>
-        <p style="color: red;"><%= request.getAttribute("error") %></p>
-    <% } %>
-    <form action="addLocation" method="post">
-        <label>End Location:</label>
-        <input type="text" name="endLocationName" required><br>
 
-        <label>Distance (km):</label>
-        <input type="number" name="distance" required><br>
+    <div class="location-container">
+        <h2>Add a New Location</h2>
 
-        <input type="submit" value="Add Location">
-    </form>
+        <form action="addLocation" method="post">
+            <div class="input-group">
+                <label for="endLocationName">End Location:</label>
+                <input type="text" id="endLocationName" name="endLocationName" required>
+            </div>
+
+            <div class="input-group">
+                <label for="distance">Distance (km):</label>
+                <input type="number" id="distance" name="distance" required>
+            </div>
+
+            <button type="submit">Add Location</button>
+        </form>
+
+        <a href="dashboard.jsp" class="home-link">Back to Dashboard</a>
+    </div>
+
 </body>
 </html>

@@ -4,29 +4,34 @@
 <%@ page import="com.mycompany.simple.maven.model.Location" %>
 <%@ page import="com.mycompany.simple.maven.model.Vehicle" %>
 
-
 <%
     Customer customer = (Customer) session.getAttribute("loggedInCustomer");
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Booking</title>
+    <link rel="stylesheet" type="text/css" href="Resources/book.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-     <h2>Welcome, <%= (customer != null) ? customer.getName() : "Guest" %></h2>
-      <% if (customer == null) { %>
-            <p style="color: red;">Session expired or not set. Please log in again.</p>
-            <a href="customerLogin.jsp">Login</a>
+
+    <div class="booking-container">
+        <h2>Welcome, <%= (customer != null) ? customer.getName() : "Guest" %></h2>
+
+        <% if (customer == null) { %>
+            <p class="error-message">Session expired or not set. Please log in again.</p>
+            <a href="customerLogin.jsp" class="btn">Login</a>
         <% } else { %>
-            <p>Your email: <%= customer.getEmail() %></p>
-            <p>Your NIC: <%= customer.getNic() %></p>
-            <p>Your Mobile: <%= customer.getMobileNo() %></p>
+            <p><strong>Email:</strong> <%= customer.getEmail() %></p>
+            <p><strong>NIC:</strong> <%= customer.getNic() %></p>
+            <p><strong>Mobile:</strong> <%= customer.getMobileNo() %></p>
         <% } %>
-    
-    <form action="addBooking" method="post">
+
+        <form action="addBooking" method="post">
         
         <label>Start Location:</label>
         <input type="text" value="Colombo" readonly><br>
@@ -100,89 +105,10 @@
 
         <button type="submit">Add Booking</button>
     </form>
+        
+    </div>
 
-    <script>
-        $(document).ready(function () {
+    <script src="Resources/scripts.js"></script>
 
-            $("#location").change(function () {
-                var selectedOption = $(this).find(':selected');
-                $("#distance").val(selectedOption.data("distance"));
-                $("#price").val(selectedOption.data("price"));
-                calculateTotalPrice();
-                calculateNewPrice();
-            });
-
-             $("#vehicleType").change(function () {
-                var selectedType = $(this).val();
-
-                $("#vehicle option").each(function () {
-                    if ($(this).data("type") === selectedType || $(this).val() === "") {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-
-                $("#vehicle").val("");
-                calculateNewPrice();
-            });
-
-            $("#bookingDate, #returnDate").change(function () {
-                calculateTotalDays();
-                calculateTotalPrice();
-                calculateNewPrice();
-            });
-
-            function calculateTotalDays() {
-                var bookingDate = new Date($("#bookingDate").val());
-                var returnDate = new Date($("#returnDate").val());
-
-                if (bookingDate && returnDate && returnDate >= bookingDate) {
-                    var timeDiff = returnDate.getTime() - bookingDate.getTime();
-                    var daysDiff = timeDiff / (1000 * 3600 * 24);
-                    $("#totalDays").val(daysDiff);
-                } else {
-                    $("#totalDays").val("");
-                }
-            }
-
-            function calculateTotalPrice() {
-                var basePrice = parseFloat($("#price").val()) || 0;
-                var addedValue = parseFloat($("#vehicle").find(':selected').data("added-value")) || 1;
-                var totalDays = parseInt($("#totalDays").val()) || 0;
-
-                if (basePrice && addedValue) {
-                    var totalPrice = (basePrice * addedValue) + (totalDays * 200);
-                    $("#totalPrice").val(totalPrice.toFixed(2));
-                } else {
-                    $("#totalPrice").val("");
-                }
-            }
-
-            function calculateNewPrice() {
-                var basePrice = parseFloat($("#price").val()) || 0;
-                var addedValue = parseFloat($("#vehicle").find(':selected').data("added-value")) || 1;
-
-                if (basePrice && addedValue) {
-                    var newPrice = basePrice * addedValue;
-                    $("#newPrice").val(newPrice.toFixed(2));
-                } else {
-                    $("#newPrice").val("");
-                }
-            }
-            
-            $("#vehicle").change(function () {
-                calculateTotalPrice();
-                calculateNewPrice();
-            });
-            $("#location").change(function () {
-                $("#endLocation").val($(this).find(":selected").text());
-            });
-
-            $("#vehicle").change(function () {
-                $("#vehicleName").val($(this).find(":selected").text());
-            });
-        });
-    </script>
 </body>
 </html>
