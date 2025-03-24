@@ -18,4 +18,8 @@ public class BookingService {
     public boolean deleteBooking(int bookingId) {
         return bookingDAO.deleteBookingById(bookingId);
     }
+    
+    public BookingService(BookingDAO bookingDAO) {
+        this.bookingDAO = bookingDAO;
+    }
 }

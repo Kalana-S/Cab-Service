@@ -23,4 +23,5 @@ public class CustomerService {
     public boolean deleteCustomer(String nic) {
         return customerDAO.deleteCustomerByNIC(nic);
     }
+    
 }

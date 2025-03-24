@@ -53,10 +53,10 @@
             <% } %>
         </select><br>
 
-        <label>Distance:</label>
+        <label>Distance (Km):</label>
         <input type="text" id="distance" name="price" readonly><br>
 
-        <label>Price:</label>
+        <label>Price (Rs.):</label>
         <input type="text" id="price" readonly><br>
 
         <label>Vehicle Type:</label>
@@ -88,7 +88,7 @@
             <% } %>
         </select><br>
         
-        <label>New Price:</label>
+        <label>New Price (Rs.):</label>
         <input type="text" id="newPrice" name="newPrice" readonly><br>
 
         <label>Booking Date:</label>
@@ -100,15 +100,20 @@
         <label>Total Days:</label>
         <input type="text" id="totalDays" name="totalDays" readonly><br>
 
-        <label>Total Price:</label>
+        <label>Total Price (Rs.):</label>
         <input type="text" id="totalPrice" name="totalPrice" readonly><br>
 
         <button type="submit">Add Booking</button>
+        
     </form>
         
+        <div class="cost">
+            <p>Rs.500 per 1Km<p>
+            <p>Car = 1.8 / Three Wheeler = 1.5 / Motor Bike = 1.2</p>
+            <p>Rs 200 per Day</p> 
+        </div> 
+        
     </div>
-
     <script src="Resources/scripts.js"></script>
-
 </body>
 </html>

@@ -14,4 +14,9 @@ public class LocationService {
         Location location = new Location(endLocationName, distance);
         return locationDAO.addLocation(location);
     }
+    
+    public LocationService(LocationDAO locationDAO) {
+        this.locationDAO = locationDAO;
+    }
+
 }

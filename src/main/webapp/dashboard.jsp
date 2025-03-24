@@ -8,6 +8,7 @@
 
     if (staff == null) {
         response.sendRedirect("login.jsp?message=Please+login+first");
+        return; 
     }
 %>
 

@@ -46,14 +46,13 @@ public class BookingController extends HttpServlet {
             boolean isAdded = bookingService.createBooking(booking);
 
             if (isAdded) {
-                // Set booking details in session to display in customer dashboard
                 session.setAttribute("bookingSuccessMessage", "Booking successful! " +
                         "Booking Date: " + booking.getBookingDate() +
                         ", Return Date: " + booking.getReturnDate() +
                         ", Total Days: " + booking.getTotalDays() +
                         ", Total Price: Rs. " + booking.getTotalPrice());
 
-                response.sendRedirect("customerDashboard.jsp"); // Redirect to dashboard
+                response.sendRedirect("customerDashboard.jsp");
             } else {
                 response.sendRedirect("addBooking.jsp?error=Something+went+wrong");
             }

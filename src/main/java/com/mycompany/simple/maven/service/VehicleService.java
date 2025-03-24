@@ -15,4 +15,7 @@ public class VehicleService {
         return vehicleDAO.addVehicle(vehicle);
     }
     
+    public VehicleService(VehicleDAO vehicleDAO) {
+        this.vehicleDAO = vehicleDAO;
+    }
 }

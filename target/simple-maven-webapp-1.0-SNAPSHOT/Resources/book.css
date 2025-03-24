@@ -51,6 +51,11 @@ h2 {
     text-align: center;
     color: white;
 }
+
+.cost p{
+    color:#007bff;
+}
+
 p{
     color: #ffcc33;
 }

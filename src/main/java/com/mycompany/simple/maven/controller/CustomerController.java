@@ -1,6 +1,7 @@
 package com.mycompany.simple.maven.controller;
 
 import com.mycompany.simple.maven.service.CustomerService;
+import com.mycompany.simple.maven.dao.CustomerDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

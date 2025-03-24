@@ -33,6 +33,7 @@ Cab Service is a web-based application designed to streamline the operations of 
 - **Customer Booking Management**: Add new bookings, view booking details, and calculate the bill.
 - **Vehicle and location Management**: Admins can add vehicle and location details.
 - **Billing System**: Automatically calculates the fare based on distance, vehicle type, and additional services.
+- **Unit Testing**: LocationService, BookingService, and VehicleService testing. ✅ (New!)
 
 
 ## Screenshots

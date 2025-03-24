@@ -4,10 +4,10 @@ $(document).ready(function () {
         var returnDate = new Date($("#returnDate").val());
 
         if (!isNaN(bookingDate.getTime()) && !isNaN(returnDate.getTime()) && returnDate >= bookingDate) {
-            var daysDiff = Math.ceil((returnDate - bookingDate) / (1000 * 3600 * 24)); // Convert to days
+            var daysDiff = Math.ceil((returnDate - bookingDate) / (1000 * 3600 * 24));
             $("#totalDays").val(daysDiff);
         } else {
-            $("#totalDays").val(""); // Clear if invalid
+            $("#totalDays").val(""); 
         }
     }
 
@@ -36,7 +36,6 @@ $(document).ready(function () {
         }
     }
 
-    // When location changes, update distance and price
     $("#location").change(function () {
         var selectedOption = $(this).find(':selected');
         var distance = selectedOption.data("distance");
@@ -44,13 +43,12 @@ $(document).ready(function () {
 
         $("#distance").val(distance);
         $("#price").val(price);
-        $("#endLocation").val(selectedOption.text()); // Update hidden input
+        $("#endLocation").val(selectedOption.text());
 
         calculateTotalPrice();
         calculateNewPrice();
     });
 
-    // When vehicle type changes, filter vehicles
     $("#vehicleType").change(function () {
         var selectedType = $(this).val();
         $("#vehicle option").each(function () {
@@ -64,14 +62,12 @@ $(document).ready(function () {
         calculateNewPrice();
     });
 
-    // When vehicle changes, update added value
     $("#vehicle").change(function () {
         $("#vehicleName").val($(this).find(":selected").text());
         calculateTotalPrice();
         calculateNewPrice();
     });
 
-    // Update calculations on date change
     $("#bookingDate, #returnDate").change(function () {
         calculateTotalDays();
         calculateTotalPrice();
