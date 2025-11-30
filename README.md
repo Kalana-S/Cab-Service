@@ -1,7 +1,7 @@
 # cab-service
 
 ## Project Overview
-Cab Service is a web-based application designed to streamline the operations of a popular cab service in Colombo City. The application facilitates customer bookings, billing calculations, and provides a platform for managing vehicles and drivers. The system uses a 3-tier architecture with MVC (Model-View-Controller) and various design patterns to ensure modularity and scalability.
+Cab Service is a **web-based application** designed to streamline the operations of a popular cab service in Colombo City. The application facilitates customer bookings, billing calculations, and provides a platform for managing vehicles and drivers. The system uses a 3-tier architecture with MVC (Model-View-Controller) and various design patterns to ensure modularity and scalability.
 
 ## Technologies Used
 
